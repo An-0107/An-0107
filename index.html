@@ -1,77 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Vio Shop - Robux Uy Tín</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vio Shop</title>
   <style>
     body {
-      background: #111;
-      color: white;
-      font-family: Arial;
-      text-align: center;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      color: #333;
       padding: 20px;
     }
-    h1 {
-      color: #f39c12;
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
     }
-    .menu {
-      margin: 20px 0;
-    }
-    .menu button {
-      background: red;
+    .button {
+      background-color: red;
       color: white;
-      padding: 10px 20px;
+      padding: 20px;
       border: none;
-      margin: 10px;
-      font-size: 18px;
       cursor: pointer;
+      font-size: 18px;
+      width: 30%;
+      text-align: center;
+    }
+    .button:hover {
+      background-color: #e74c3c;
     }
     .section {
       display: none;
-      margin-top: 30px;
+      margin-top: 20px;
     }
-    input[type="text"], input[type="number"] {
-      padding: 10px;
-      width: 80%;
+    .input-container {
       margin: 10px 0;
     }
+    .input-container label {
+      margin-right: 10px;
+    }
+    .input-container input {
+      padding: 8px;
+      width: 200px;
+    }
     .result {
-      margin-top: 20px;
+      margin-top: 10px;
       font-size: 18px;
-      color: #0f0;
+      color: green;
+    }
+    .money {
+      font-size: 20px;
+      color: blue;
     }
   </style>
 </head>
 <body>
 
-  <h1>Shop Robux Uy Tín 120h</h1>
+  <h1>Vio Shop</h1>
 
-  <div class="menu">
-    <button onclick="showSection('robux')">Robux</button>
-    <button onclick="showSection('napthe')">Nạp Thẻ</button>
+  <div class="button-container">
+    <button class="button" onclick="showSection('napThe')">Nạp Thẻ Robux</button>
+    <button class="button" onclick="showSection('muaRobux')">Mua Robux</button>
+    <button class="button" onclick="showSection('conCuSection')">Con Cu</button>
   </div>
 
-  <!-- Nạp thẻ -->
-  <div id="napthe" class="section">
-    <h2>Nạp Thẻ</h2>
-    <input type="number" id="giatri" placeholder="Giá trị thẻ (VD: 10000)">
-    <input type="text" id="mathe" placeholder="Mã số thẻ">
-    <input type="text" id="seri" placeholder="Số Seri">
-    <br>
-    <button onclick="hoanTatNapThe()">Hoàn Tất</button>
-    <div id="kqnap" class="result"></div>
+  <!-- Nạp Thẻ Robux -->
+  <div id="napThe" class="section">
+    <h2>Nạp Thẻ Robux</h2>
+    <div class="input-container">
+      <label for="giatri">Giá trị thẻ:</label>
+      <input type="number" id="giatri" placeholder="Nhập giá trị thẻ">
+    </div>
+    <div class="input-container">
+      <label for="mathe">Mã thẻ:</label>
+      <input type="text" id="mathe" placeholder="Nhập mã thẻ">
+    </div>
+    <div class="input-container">
+      <label for="seri">Số seri:</label>
+      <input type="text" id="seri" placeholder="Nhập số seri">
+    </div>
+    <button class="button" onclick="hoanTatNapThe()">Nạp Thẻ</button>
+    <p id="kqnap" class="result"></p>
+    <p id="tien" class="money"></p> <!-- Hiển thị số tiền nạp vào -->
   </div>
 
-  <!-- Robux -->
-  <div id="robux" class="section">
+  <!-- Mua Robux -->
+  <div id="muaRobux" class="section">
     <h2>Mua Robux</h2>
-    <div id="tien" style="margin-bottom: 10px;">Số tiền: 0đ</div>
-    <div id="robuxnhan">Số Robux: 0</div>
-    <br>
-    <input type="text" id="taikhoanrb" placeholder="Nhập tài khoản Roblox">
-    <br>
-    <button onclick="muaRobux()">Avatar</button>
-    <div id="kqrobux" class="result"></div>
+    <div class="input-container">
+      <label for="taikhoanrb">Tài khoản Roblox:</label>
+      <input type="text" id="taikhoanrb" placeholder="Nhập tài khoản Roblox">
+    </div>
+    <button class="button" onclick="muaRobux()">Mua Robux</button>
+    <p id="kqrobux" class="result"></p>
+  </div>
+
+  <!-- Con Cu -->
+  <div id="conCuSection" class="section">
+    <h2>Con Cu</h2>
+    <p>Lêu lêu!</p>
   </div>
 
   <script>
@@ -84,17 +111,30 @@
 
     function hoanTatNapThe() {
       const giatri = parseInt(document.getElementById("giatri").value);
-      const mathe = document.getElementById("mathe").value;
-      const seri = document.getElementById("seri").value;
+      const mathe = document.getElementById("mathe").value.trim();
+      const seri = document.getElementById("seri").value.trim();
 
-      if (giatri > 0 && mathe && seri) {
-        soTienNap = giatri;
-        document.getElementById("kqnap").innerText = "Nạp thẻ thành công!";
-        document.getElementById("tien").innerText = "Số tiền: " + soTienNap + "đ";
-        document.getElementById("robuxnhan").innerText = "Số Robux: " + Math.floor(soTienNap / 10000 * 80);
-      } else {
-        document.getElementById("kqnap").innerText = "Vui lòng nhập đầy đủ!";
+      const giaTriHopLe = [10000, 20000, 50000, 100000];
+
+      if (!giatri || !giaTriHopLe.includes(giatri)) {
+        document.getElementById("kqnap").innerText = "Giá trị thẻ không hợp lệ!";
+        return;
       }
+
+      if (!/^\d{10}$/.test(mathe)) {
+        document.getElementById("kqnap").innerText = "Mã thẻ phải gồm 10 chữ số!";
+        return;
+      }
+
+      if (!/^\d{11}$/.test(seri)) {
+        document.getElementById("kqnap").innerText = "Số seri phải gồm 11 chữ số!";
+        return;
+      }
+
+      // Nếu hợp lệ thì cộng tiền ảo
+      soTienNap = giatri;
+      document.getElementById("kqnap").innerText = "Nạp thẻ thành công!";
+      document.getElementById("tien").innerText = "Số tiền: " + soTienNap + "đ"; // Hiển thị số tiền
     }
 
     function muaRobux() {
@@ -110,6 +150,5 @@
       }
     }
   </script>
-
 </body>
 </html>
