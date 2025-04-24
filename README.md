@@ -49,7 +49,6 @@
   <div class="menu">
     <button onclick="showSection('robux')">Robux</button>
     <button onclick="showSection('napthe')">Nạp Thẻ</button>
-    <button onclick="showSection('caythue')">Cày Thuê</button>
   </div>
 
   <!-- Nạp thẻ -->
@@ -73,16 +72,6 @@
     <br>
     <button onclick="muaRobux()">Avatar</button>
     <div id="kqrobux" class="result"></div>
-  </div>
-
-  <!-- Cày thuê -->
-  <div id="caythue" class="section">
-    <h2>Cày Thuê</h2>
-    <input type="text" placeholder="Nhập yêu cầu cần cày thuê">
-    <input type="text" placeholder="Tài khoản Roblox">
-    <input type="text" placeholder="Mật khẩu Roblox">
-    <br>
-    <div class="result">Yêu cầu của bạn đã được ghi nhận!</div>
   </div>
 
   <script>
